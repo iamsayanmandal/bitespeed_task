@@ -1,31 +1,37 @@
-# Bitespeed Identity Reconciliation
+# Identity Reconciliation API (Bitespeed Assessment)
 
-Backend service that links different contact info to the same customer.
+<p align="center">
+  <b>A robust backend service for customer identity reconciliation and data merging.</b>
+</p>
 
-## Setup
+## Overview
 
-```
-npm install
-node index.js
-```
+In e-commerce, customers often interact with a store using different email addresses or phone numbers across multiple orders. This service exposes a REST API endpoint that links various contact details to a single customer profile, intelligently categorizing contacts into **primary** and **secondary** identities.
 
-Server starts on port 3000
+## Architecture & Tech Stack
 
-## Endpoint
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: SQLite (`better-sqlite3` for high-performance synchronous queries)
+- **Deployment**: Render
 
-**POST** `/identify`
+## API Reference
 
-Request body:
+### Identify Customer
+**Endpoint**: `POST /identify`
+
+Creates or links customer identities based on the provided contact information.
+
+**Request Body**:
 ```json
 {
   "email": "test@example.com",
   "phoneNumber": "1234567890"
 }
 ```
+*(Note: Both fields are optional, but at least one must be provided.)*
 
-Both fields are optional but atleast one is required.
-
-Response:
+**Response Payload**:
 ```json
 {
   "contact": {
@@ -37,11 +43,17 @@ Response:
 }
 ```
 
-## Tech used
+## Local Development Setup
 
-- Node.js + Express
-- SQLite (better-sqlite3)
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the server:
+   ```bash
+   npm start
+   ```
+   *The server will run on `http://localhost:3000`.*
 
-## Hosted at
-
-https://bitespeed-task-efjt.onrender.com
+---
+*Built by [Sayan Mandal](https://github.com/iamsayanmandal)*
